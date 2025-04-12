@@ -6,12 +6,14 @@ const errorHandler = (err, req, res, next) => {
     switch (statusCode) {
         case statusCodeVals.VALIDATION_ERROR:
             res.json({title: "Validation Error", 
+                httpStatusCode: statusCode,
                 message: err.message, 
                 stackTrace: err.stack});
             break;
     
         case statusCodeVals.UNAUTHORIZED:
             res.json({title: "Unauthorized", 
+                httpStatusCode: statusCode,
                 message: err.message, 
                 stackTrace: err.stack});
             break;
@@ -19,6 +21,7 @@ const errorHandler = (err, req, res, next) => {
     
         case statusCodeVals.FORBIDDEN:
             res.json({title: "Forbidden", 
+                httpStatusCode: statusCode,
                 message: err.message, 
                 stackTrace: err.stack});            
             break;
@@ -26,6 +29,7 @@ const errorHandler = (err, req, res, next) => {
 
         case statusCodeVals.NOT_FOUND:
             res.json({title: "Not found", 
+                httpStatusCode: statusCode,
                 message: err.message, 
                 stackTrace: err.stack});
             
@@ -33,6 +37,7 @@ const errorHandler = (err, req, res, next) => {
 
         case statusCodeVals.SERVER_ERROR:
             res.json({title: "Server Error", 
+                httpStatusCode: statusCode,
                 message: err.message, 
                 stackTrace: err.stack});
             break;
