@@ -1,6 +1,8 @@
 const statusCodeVals = require("../constants");
 
 const errorHandler = (err, req, res, next) => {
+
+    console.log(res.statusCode);
     const statusCode = res.statusCode ? res.statusCode: 500;
 
     switch (statusCode) {
@@ -43,7 +45,7 @@ const errorHandler = (err, req, res, next) => {
             break;
     
         default:
-            console.log("Aal izz well !!");
+            console.log("Great work!");
             break;
     }
     
