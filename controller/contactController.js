@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Contact = require("../models/contactModel");   
+const Contact = require("../models/contactModel");
 const {checkId, checkMandatoryFields} = require("../middleware/requestValidator");
 
 
