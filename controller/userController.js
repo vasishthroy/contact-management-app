@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
 const user = require("../models/userModel");
 
 // @desc POST all elements
@@ -23,9 +24,16 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error("Email address already in use");
     }
+    const hashedPass = await bcrypt.hash(password.toString(), 10);
 
-    // const userRecord = user.create({name, email, password});
-    res.status(201).json({message: `${name} ${email} ${password}`});
+    const userRecord = user.create({name, email, password: hashedPass});
+
+    if (userRecord) {
+        res.status(201).json({message: `${name} ${email} ${password}`});
+    } else {
+        res.status(400);
+        throw new Error("Could not register user");
+    }
 })
 
 // @desc POST all elements
