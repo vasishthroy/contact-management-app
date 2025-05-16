@@ -6,17 +6,21 @@ const {checkId, checkMandatoryFields} = require("../middleware/requestValidator"
 const INVALID_ID = "ID is Invalid.";
 const VALUE_NOT_FOUND = "Contact not found.";
 
-// @desc Get all elements
-// @route GET /api/contacts
-// @access public
+/**
+ * @desc Get all elements
+ * @route GET /api/contacts
+ * @access public
+*/
 const getContacts = asyncHandler(async (req, res) => {
     const contact = await Contact.find();
     res.status(200).json(contact);
 })
 
-// @desc Get contact
-// @route GET /api/contacts/:id
-// @access public
+/**
+ * @desc Get contact
+ * @route GET /api/contacts/:id
+ * @access public
+ */
 const getContact = asyncHandler(async (req, res) => {
     if (!(req.params.id.length == 24)) {
         res.status(400);
@@ -33,9 +37,11 @@ const getContact = asyncHandler(async (req, res) => {
     res.status(200).json(contact);
 })
 
-// @desc Create new contact
-// @route POST /api/contacts
-// @access public
+/**
+ * @desc Create new contact
+ * @route POST /api/contacts
+ * @access public
+ */
 const createContact = asyncHandler(async (req, res) => {
     
     const { name, email, phone} = req.body;
@@ -49,9 +55,11 @@ const createContact = asyncHandler(async (req, res) => {
     
 })
 
-// @desc Update contact
-// @route PUT /api/contacts/:id
-// @access public
+/**
+ * @desc Update contact
+ * @route PUT /api/contacts/:id
+ * @access public
+ */
 const updateContact = asyncHandler(async (req, res) => {
     if (req.params.id.length != 25) {
         res.status(400);
@@ -74,9 +82,11 @@ const updateContact = asyncHandler(async (req, res) => {
     res.status(200).json(updatedContact);
 })
 
-// @desc Update contact
-// @route DELETE /api/contacts/:id
-// @access public
+/**
+ * @desc Update contact
+ * @route DELETE /api/contacts/:id
+ * @access public
+*/
 const deleteContact = asyncHandler(async (req, res) => {
     const contact = await Contact.findById(req.params.id);
     

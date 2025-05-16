@@ -11,6 +11,7 @@ const errorHandler = (err, req, res, next) => {
                 message: err.message, 
                 stackTrace: err.stack});
             break;
+
     
         case statusCodeVals.UNAUTHORIZED:
             res.json({title: "Unauthorized", 
@@ -35,6 +36,7 @@ const errorHandler = (err, req, res, next) => {
                 stackTrace: err.stack});
             
             break;
+            
 
         case statusCodeVals.SERVER_ERROR:
             res.json({title: "Server Error", 
@@ -43,11 +45,11 @@ const errorHandler = (err, req, res, next) => {
                 stackTrace: err.stack});
             break;
     
+            
         default:
             console.log("Great work!");
             break;
     }
-    
 }
 
 module.exports = errorHandler;
